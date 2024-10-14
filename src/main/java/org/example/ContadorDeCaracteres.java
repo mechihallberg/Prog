@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ContadorDeCaracteres {
@@ -30,6 +29,7 @@ public class ContadorDeCaracteres {
         Matcher fraseMatcher = frasePattern.matcher(texto);
 
         int totalLetras = 0;
+        Map<String, Integer> frasePalabrasMap = new HashMap<>(); // HashMap para almacenar frases y su conteo de palabras
 
         while (fraseMatcher.find()) {
             String frase = fraseMatcher.group();
@@ -37,6 +37,7 @@ public class ContadorDeCaracteres {
             int letrasCount = contarLetras(frase);
 
             totalLetras += letrasCount;
+            frasePalabrasMap.put(frase, palabrasCount); // Almacenar la frase y su conteo de palabras
 
             // Mostrar el resultado para cada frase
             System.out.printf("En la frase \"%s\" hay %d palabras de %d letras.%n", frase, palabrasCount, letrasCount);
@@ -44,6 +45,12 @@ public class ContadorDeCaracteres {
 
         // Mostrar el total de letras en todo el texto
         System.out.println("Total de letras en el texto: " + totalLetras);
+
+        // Mostrar el contenido del HashMap (frases y conteo de palabras)
+        System.out.println("\nConteo de palabras por frase:");
+        for (Map.Entry<String, Integer> entry : frasePalabrasMap.entrySet()) {
+            System.out.printf("Frase: \"%s\" - Palabras: %d%n", entry.getKey(), entry.getValue());
+        }
     }
 
     private static int contarPalabras(String frase) {
