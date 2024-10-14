@@ -53,6 +53,7 @@ public class ContadorDeCaracteres {
         }
     }
 
+
     private static int contarPalabras(String frase) {
         // Crear una expresión regular para encontrar todas las palabras
         String regex = "\\b\\w+\\b"; // Busca todas las palabras
